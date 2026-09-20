@@ -1,5 +1,7 @@
-﻿# Front-End Development (FED) Coursework & Practical Labs
+﻿# Front-End Development (FED) Coursework & Full-Stack Labs
 
+![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
@@ -13,7 +15,7 @@
 
 ## 📚 Curriculum Structure
 
-This repository organizes laboratory experiments, weekly practicals, and capstone mini-projects for the Front-End Development curriculum.
+This repository organizes laboratory experiments, weekly practicals, backend REST API integration, and capstone mini-projects for the Front-End Development curriculum.
 
 ```
 FED/
@@ -25,6 +27,10 @@ FED/
 │   └── 01-flexbox-guide.html            # Flexbox layout system, justification, alignment
 ├── 03-JavaScript-Core/
 │   └── 01-dom-manipulation.html         # DOM events, state, interactive counter
+├── 05-Backend-Integration-and-APIs/     # Full-Stack Integration Module
+│   ├── package.json                     # Express server setup
+│   ├── server.js                        # Node.js mock REST API (/api/courses, /api/feedback)
+│   └── index.html                       # Asynchronous fetch(), async/await, and error handling
 └── 04-Mini-Projects/
     ├── 01-smart-todo/                   # Full CRUD Task Manager with localStorage
     ├── 02-scientific-calculator/        # Expression calculator with history roll
@@ -34,27 +40,14 @@ FED/
 
 ---
 
-## 🎯 Key Learning Outcomes
-
-1. **Semantic HTML5**: Implementing proper document outlines, ARIA roles, and accessible markup.
-2. **Modern CSS Layouts**: Mastery of CSS Flexbox and Grid without relying on heavy external frameworks.
-3. **Client-Side JavaScript**: Event handling, DOM tree manipulation, and `localStorage` persistence.
-4. **Academic Project Implementation**: Development of specialized tools like the KLU SGPA Calculator tailored to university regulations.
-
----
-
-## 🚀 How to Run Locally
+## 📡 Running the Backend Lab Module
 
 ```bash
-# Clone the repository
-git clone https://github.com/2500080283/FED.git
-
-# Navigate to the project directory
-cd FED
-
-# Open the course portal
-start index.html
+cd 05-Backend-Integration-and-APIs
+npm install
+npm start
 ```
+Server runs at `http://localhost:3001`!
 
 ---
 

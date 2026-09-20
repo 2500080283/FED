@@ -1,0 +1,14 @@
+﻿{
+  "name": "fed-backend-lab",
+  "version": "1.0.0",
+  "description": "FED Lab Module 05: Asynchronous Fetch & Backend REST API Integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Ch. Prudhvi Raj (2500080283)",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}
