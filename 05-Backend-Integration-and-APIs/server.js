@@ -1,4 +1,4 @@
-﻿const express = require('express');
+const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
@@ -17,6 +17,16 @@ const coursesDB = [
 ];
 
 const feedbackDB = [];
+
+// Health Check
+app.get('/api/health', (req, res) => {
+    res.json({
+        status: 'online',
+        service: 'FED Lab Backend REST API',
+        port: PORT,
+        courses: coursesDB.length
+    });
+});
 
 // GET /api/courses
 app.get('/api/courses', (req, res) => {
@@ -53,6 +63,10 @@ app.post('/api/feedback', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`FED Lab Backend Server running at http://localhost:${PORT}`);
-});
+module.exports = app;
+
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`FED Lab Backend Server running at http://localhost:${PORT}`);
+    });
+}
