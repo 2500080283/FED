@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLU CGPA/SGPA Calculator - FED Mini Project</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; padding: 30px 16px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        .back-nav { width: 100%; max-width: 680px; margin-bottom: 16px; }
+        .back-nav a { color: #8b0000; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .calc-card { width: 100%; max-width: 680px; background: white; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #8b0000 0%, #550000 100%); color: white; padding: 22px; text-align: center; }
+        .header h1 { font-size: 22px; margin-bottom: 4px; }
+        .header p { color: #fde68a; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .body-content { padding: 24px; }
+        .courses-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
+        .courses-table th, .courses-table td { padding: 10px; border-bottom: 1px solid #e2e8f0; }
+        .courses-table th { background: #f1f5f9; color: #334155; text-align: left; }
+        select, input[type="number"], input[type="text"] { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; }
+        .btn-row { display: flex; gap: 10px; margin-bottom: 20px; }
+        .btn-add { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .btn-calc { background: #8b0000; border: none; color: white; padding: 10px 24px; border-radius: 6px; font-weight: 700; cursor: pointer; flex: 1; }
+        .result-box { background: #f0fdf4; border: 2px solid #86efac; border-radius: 12px; padding: 18px; text-align: center; display: none; }
+        .result-score { font-size: 36px; font-weight: 800; color: #166534; margin: 6px 0; }
+        .btn-del { background: transparent; border: none; color: #dc2626; cursor: pointer; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div class="back-nav"><a href="../../index.html">&larr; Back to FED Coursework Portal</a></div>
+    <div class="calc-card">
+        <div class="header">
+            <h1>KL University SGPA Calculator</h1>
+            <p>10-Point Relative Grading System (KLEF Academic Regulations)</p>
+        </div>
+        <div class="body-content">
+            <table class="courses-table">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th style="width: 100px;">Credits</th>
+                        <th style="width: 150px;">Grade Earned</th>
+                        <th style="width: 40px;"></th>
+                    </tr>
+                </thead>
+                <tbody id="coursesBody">
+                    <tr>
+                        <td><input type="text" value="Front End Development (FED)"></td>
+                        <td><input type="number" class="credit-input" value="4" min="1" max="6"></td>
+                        <td>
+                            <select class="grade-select">
+                                <option value="10" selected>O (Outstanding - 10)</option>
+                                <option value="9">A+ (Excellent - 9)</option>
+                                <option value="8">A (Very Good - 8)</option>
+                                <option value="7">B+ (Good - 7)</option>
+                                <option value="6">B (Above Average - 6)</option>
+                                <option value="5">C (Pass - 5)</option>
+                                <option value="0">F (Fail - 0)</option>
+                            </select>
+                        </td>
+                        <td><button class="btn-del" onclick="delRow(this)">&times;</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Database Management Systems"></td>
+                        <td><input type="number" class="credit-input" value="4" min="1" max="6"></td>
+                        <td>
+                            <select class="grade-select">
+                                <option value="10">O (Outstanding - 10)</option>
+                                <option value="9" selected>A+ (Excellent - 9)</option>
+                                <option value="8">A (Very Good - 8)</option>
+                                <option value="7">B+ (Good - 7)</option>
+                                <option value="6">B (Above Average - 6)</option>
+                                <option value="5">C (Pass - 5)</option>
+                                <option value="0">F (Fail - 0)</option>
+                            </select>
+                        </td>
+                        <td><button class="btn-del" onclick="delRow(this)">&times;</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Operating Systems"></td>
+                        <td><input type="number" class="credit-input" value="3" min="1" max="6"></td>
+                        <td>
+                            <select class="grade-select">
+                                <option value="10">O (Outstanding - 10)</option>
+                                <option value="9">A+ (Excellent - 9)</option>
+                                <option value="8" selected>A (Very Good - 8)</option>
+                                <option value="7">B+ (Good - 7)</option>
+                                <option value="6">B (Above Average - 6)</option>
+                                <option value="5">C (Pass - 5)</option>
+                                <option value="0">F (Fail - 0)</option>
+                            </select>
+                        </td>
+                        <td><button class="btn-del" onclick="delRow(this)">&times;</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="btn-row">
+                <button class="btn-add" onclick="addRow()">+ Add Course</button>
+                <button class="btn-calc" onclick="calcGPA()">Calculate SGPA</button>
+            </div>
+
+            <div class="result-box" id="resultBox">
+                <p style="color:#166534; font-weight:600;">Calculated Semester GPA (SGPA):</p>
+                <div class="result-score" id="gpaDisplay">9.36</div>
+                <p style="color:#15803d; font-size:13px;" id="statusDisplay">Classification: First Class with Distinction</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addRow() {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="text" placeholder="Course Name"></td>
+                <td><input type="number" class="credit-input" value="3" min="1" max="6"></td>
+                <td>
+                    <select class="grade-select">
+                        <option value="10">O (Outstanding - 10)</option>
+                        <option value="9">A+ (Excellent - 9)</option>
+                        <option value="8">A (Very Good - 8)</option>
+                        <option value="7">B+ (Good - 7)</option>
+                        <option value="6">B (Above Average - 6)</option>
+                        <option value="5">C (Pass - 5)</option>
+                        <option value="0">F (Fail - 0)</option>
+                    </select>
+                </td>
+                <td><button class="btn-del" onclick="delRow(this)">&times;</button></td>
+            `;
+            document.getElementById('coursesBody').appendChild(tr);
+        }
+
+        function delRow(btn) {
+            const rows = document.querySelectorAll('#coursesBody tr');
+            if (rows.length > 1) {
+                btn.closest('tr').remove();
+            } else {
+                alert('At least one course is required.');
+            }
+        }
+
+        function calcGPA() {
+            let totalCredits = 0;
+            let totalPoints = 0;
+
+            const credits = document.querySelectorAll('.credit-input');
+            const grades = document.querySelectorAll('.grade-select');
+
+            for (let i = 0; i < credits.length; i++) {
+                const c = parseFloat(credits[i].value) || 0;
+                const g = parseFloat(grades[i].value) || 0;
+                totalCredits += c;
+                totalPoints += (c * g);
+            }
+
+            if (totalCredits === 0) return;
+
+            const sgpa = (totalPoints / totalCredits).toFixed(2);
+            document.getElementById('gpaDisplay').textContent = sgpa;
+            
+            let status = 'First Class with Distinction';
+            if (sgpa < 6.0) status = 'Second Class';
+            else if (sgpa < 7.5) status = 'First Class';
+            document.getElementById('statusDisplay').textContent = `Total Credits: ${totalCredits} | Classification: ${status}`;
+            
+            document.getElementById('resultBox').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

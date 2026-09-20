@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Events & Manipulation - FED Lab</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; padding: 24px 16px; line-height: 1.6; }
+        .back-nav { margin-bottom: 16px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .back-nav a { color: #2563eb; text-decoration: none; font-weight: 600; font-size: 14px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 28px; }
+        .counter-box { text-align: center; padding: 30px; background: #f1f5f9; border-radius: 12px; margin-top: 20px; }
+        .count-display { font-size: 48px; font-weight: 800; color: #1e293b; margin-bottom: 16px; }
+        .btn-group { display: flex; justify-content: center; gap: 12px; }
+        button { padding: 10px 20px; font-size: 16px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; }
+        .btn-inc { background: #16a34a; color: white; }
+        .btn-dec { background: #dc2626; color: white; }
+        .btn-rst { background: #64748b; color: white; }
+    </style>
+</head>
+<body>
+    <div class="back-nav"><a href="../index.html">&larr; Back to FED Coursework Portal</a></div>
+    <div class="container">
+        <h1>FED Lab 04: DOM Event Listeners & State</h1>
+        <p style="color:#64748b; font-size:14px;">Event Delegation • State Mutators • Interactive Interfaces</p>
+
+        <div class="counter-box">
+            <div class="count-display" id="count">0</div>
+            <div class="btn-group">
+                <button class="btn-dec" id="decBtn">- Decrement</button>
+                <button class="btn-rst" id="rstBtn">Reset</button>
+                <button class="btn-inc" id="incBtn">+ Increment</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let count = 0;
+        const display = document.getElementById('count');
+        document.getElementById('incBtn').onclick = () => { count++; display.textContent = count; };
+        document.getElementById('decBtn').onclick = () => { count--; display.textContent = count; };
+        document.getElementById('rstBtn').onclick = () => { count = 0; display.textContent = count; };
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-End Development (FED) Coursework Portal | KL University</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; padding: 30px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        .container { width: 100%; max-width: 960px; }
+        header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 32px; border-radius: 16px; text-align: center; margin-bottom: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        header h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+        header p { color: #94a3b8; font-size: 15px; margin-bottom: 16px; }
+        .student-pill { display: inline-flex; gap: 12px; background: rgba(255,255,255,0.1); padding: 8px 18px; border-radius: 9999px; font-size: 13px; color: #fde68a; font-weight: 600; }
+        .section-title { font-size: 20px; font-weight: 700; color: #0f172a; margin: 28px 0 14px; border-left: 4px solid #3b82f6; padding-left: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+        .card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-decoration: none; color: inherit; transition: all 0.2s ease; display: flex; flex-direction: column; justify-content: space-between; }
+        .card:hover { transform: translateY(-3px); border-color: #3b82f6; box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+        .card-badge { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: #e0f2fe; color: #0369a1; margin-bottom: 10px; width: fit-content; }
+        .card-badge.proj { background: #fef3c7; color: #92400e; }
+        .card h3 { font-size: 16px; margin-bottom: 6px; color: #0f172a; }
+        .card p { font-size: 13px; color: #64748b; margin-bottom: 14px; }
+        .card-footer { font-size: 13px; font-weight: 600; color: #2563eb; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 10px; }
+        footer { margin-top: auto; padding: 24px; text-align: center; color: #64748b; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Front-End Development (FED) Coursework</h1>
+            <p>KL University • Department of Computer Science & Engineering • Lab Syllabus</p>
+            <div class="student-pill">
+                <span>Student: Ch. Prudhvi Raj</span>
+                <span>•</span>
+                <span>ID: 2500080283</span>
+            </div>
+        </header>
+
+        <h2 class="section-title">Module 1: HTML5 Fundamentals</h2>
+        <div class="grid">
+            <a href="01-HTML5-Fundamentals/01-semantics.html" class="card">
+                <div>
+                    <span class="card-badge">Lab 01</span>
+                    <h3>Semantic Document Structure</h3>
+                    <p>Header, nav, main, article, section, and accessibility best practices.</p>
+                </div>
+                <div class="card-footer"><span>Launch Lab</span><span>&rarr;</span></div>
+            </a>
+            <a href="01-HTML5-Fundamentals/02-tables-and-forms.html" class="card">
+                <div>
+                    <span class="card-badge">Lab 02</span>
+                    <h3>Tables & Form Controls</h3>
+                    <p>Grade table reporting, feedback form, and input field validations.</p>
+                </div>
+                <div class="card-footer"><span>Launch Lab</span><span>&rarr;</span></div>
+            </a>
+        </div>
+
+        <h2 class="section-title">Module 2: CSS3 Layouts & Styling</h2>
+        <div class="grid">
+            <a href="02-CSS3-Styling/01-flexbox-guide.html" class="card">
+                <div>
+                    <span class="card-badge">Lab 03</span>
+                    <h3>CSS3 Flexbox Guide</h3>
+                    <p>Interactive 1D layout model demonstration with alignment controls.</p>
+                </div>
+                <div class="card-footer"><span>Launch Lab</span><span>&rarr;</span></div>
+            </a>
+            <a href="03-JavaScript-Core/01-dom-manipulation.html" class="card">
+                <div>
+                    <span class="card-badge">Lab 04</span>
+                    <h3>DOM Events & State</h3>
+                    <p>JavaScript event listeners, state mutation, and interactive counter.</p>
+                </div>
+                <div class="card-footer"><span>Launch Lab</span><span>&rarr;</span></div>
+            </a>
+        </div>
+
+        <h2 class="section-title">Module 3: Interactive Mini-Projects</h2>
+        <div class="grid">
+            <a href="04-Mini-Projects/01-smart-todo/index.html" class="card">
+                <div>
+                    <span class="card-badge proj">Project 1</span>
+                    <h3>Smart Task Manager</h3>
+                    <p>LocalStorage task management with priority badges, status filters, and deletion.</p>
+                </div>
+                <div class="card-footer"><span>Open Project</span><span>&rarr;</span></div>
+            </a>
+            <a href="04-Mini-Projects/02-scientific-calculator/index.html" class="card">
+                <div>
+                    <span class="card-badge proj">Project 2</span>
+                    <h3>Modern Calculator</h3>
+                    <p>Expression evaluation with history log, floating points, and percentage operations.</p>
+                </div>
+                <div class="card-footer"><span>Open Project</span><span>&rarr;</span></div>
+            </a>
+            <a href="04-Mini-Projects/03-klu-gpa-calculator/index.html" class="card">
+                <div>
+                    <span class="card-badge proj">Project 3</span>
+                    <h3>KLU SGPA/CGPA Calculator</h3>
+                    <p>Dynamic semester GPA calculator implementing KL University grading scales.</p>
+                </div>
+                <div class="card-footer"><span>Open Project</span><span>&rarr;</span></div>
+            </a>
+            <a href="04-Mini-Projects/04-weather-dashboard/index.html" class="card">
+                <div>
+                    <span class="card-badge proj">Project 4</span>
+                    <h3>Weather Forecast Dashboard</h3>
+                    <p>City search with simulated atmospheric data, humidity, and UV metrics.</p>
+                </div>
+                <div class="card-footer"><span>Open Project</span><span>&rarr;</span></div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ch. Prudhvi Raj (2500080283) • KL University FED Lab Coursework</p>
+    </footer>
+</body>
+</html>

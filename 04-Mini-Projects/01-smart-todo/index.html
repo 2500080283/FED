@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Manager - FED Mini Project</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px 16px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        .back-nav { width: 100%; max-width: 540px; margin-bottom: 16px; }
+        .back-nav a { color: #38bdf8; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .app-card { width: 100%; max-width: 540px; background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); }
+        h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; color: #f8fafc; }
+        p.subtitle { font-size: 13px; color: #94a3b8; margin-bottom: 20px; }
+        .input-row { display: flex; gap: 8px; margin-bottom: 18px; }
+        input[type="text"] { flex: 1; padding: 12px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: white; font-size: 14px; }
+        input[type="text"]:focus { outline: none; border-color: #38bdf8; }
+        select { background: #0f172a; border: 1px solid #334155; color: white; padding: 0 10px; border-radius: 8px; font-size: 13px; }
+        .btn-add { background: #38bdf8; color: #0f172a; border: none; padding: 0 18px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        .btn-add:hover { background: #0ea5e9; }
+        .filter-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+        .tab-btn { background: #0f172a; border: 1px solid #334155; color: #94a3b8; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .tab-btn.active { background: #38bdf8; color: #0f172a; border-color: #38bdf8; }
+        .task-list { list-style: none; display: flex; flex-direction: column; gap: 10px; max-height: 380px; overflow-y: auto; }
+        .task-item { display: flex; align-items: center; justify-content: space-between; background: #0f172a; border: 1px solid #334155; padding: 12px 14px; border-radius: 8px; transition: all 0.2s ease; }
+        .task-item.completed { opacity: 0.55; text-decoration: line-through; }
+        .task-left { display: flex; align-items: center; gap: 10px; }
+        .priority-badge { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+        .priority-high { background: #ef4444; color: white; }
+        .priority-med { background: #f59e0b; color: white; }
+        .priority-low { background: #10b981; color: white; }
+        .btn-del { background: transparent; border: none; color: #ef4444; cursor: pointer; font-size: 14px; padding: 4px; }
+        .empty-state { text-align: center; color: #64748b; font-size: 13px; padding: 24px; }
+    </style>
+</head>
+<body>
+    <div class="back-nav"><a href="../../index.html">&larr; Back to FED Coursework Portal</a></div>
+    <div class="app-card">
+        <h1>Smart Task Manager</h1>
+        <p class="subtitle">FED Lab Mini Project • LocalStorage Powered</p>
+
+        <div class="input-row">
+            <input type="text" id="taskInput" placeholder="What needs to be done?">
+            <select id="prioritySelect">
+                <option value="high">High</option>
+                <option value="med" selected>Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <button class="btn-add" id="addBtn">Add</button>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="tab-btn active" data-filter="all">All</button>
+            <button class="tab-btn" data-filter="active">Active</button>
+            <button class="tab-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <ul class="task-list" id="taskList"></ul>
+        <div id="emptyState" class="empty-state">No tasks yet! Add one above.</div>
+    </div>
+
+    <script>
+        let tasks = JSON.parse(localStorage.getItem('fed_tasks')) || [
+            { id: 1, text: "Finish FED Lab Experiments", priority: "high", completed: true },
+            { id: 2, text: "Submit KL University Web Project", priority: "high", completed: false },
+            { id: 3, text: "Study CSS Grid and Flexbox", priority: "med", completed: false }
+        ];
+        let currentFilter = 'all';
+
+        const listEl = document.getElementById('taskList');
+        const emptyEl = document.getElementById('emptyState');
+        const inputEl = document.getElementById('taskInput');
+        const priorityEl = document.getElementById('prioritySelect');
+
+        function save() { localStorage.setItem('fed_tasks', JSON.stringify(tasks)); }
+
+        function render() {
+            listEl.innerHTML = '';
+            const filtered = tasks.filter(t => {
+                if (currentFilter === 'active') return !t.completed;
+                if (currentFilter === 'completed') return t.completed;
+                return true;
+            });
+
+            emptyEl.style.display = filtered.length === 0 ? 'block' : 'none';
+
+            filtered.forEach(task => {
+                const li = document.createElement('li');
+                li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                li.innerHTML = `
+                    <div class="task-left">
+                        <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${task.id})">
+                        <span>${escapeHtml(task.text)}</span>
+                        <span class="priority-badge priority-${task.priority}">${task.priority}</span>
+                    </div>
+                    <button class="btn-del" onclick="deleteTask(${task.id})">&times;</button>
+                `;
+                listEl.appendChild(li);
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function addTask() {
+            const val = inputEl.value.trim();
+            if (!val) return;
+            tasks.push({ id: Date.now(), text: val, priority: priorityEl.value, completed: false });
+            inputEl.value = '';
+            save();
+            render();
+        }
+
+        window.toggleTask = function(id) {
+            const t = tasks.find(x => x.id === id);
+            if (t) { t.completed = !t.completed; save(); render(); }
+        };
+
+        window.deleteTask = function(id) {
+            tasks = tasks.filter(x => x.id !== id);
+            save();
+            render();
+        };
+
+        document.getElementById('addBtn').onclick = addTask;
+        inputEl.onkeydown = (e) => { if (e.key === 'Enter') addTask(); };
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                render();
+            };
+        });
+
+        render();
+    </script>
+</body>
+</html>

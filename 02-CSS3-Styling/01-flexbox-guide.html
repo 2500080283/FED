@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Flexbox Guide - FED Lab</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; padding: 24px 16px; line-height: 1.6; }
+        .back-nav { margin-bottom: 16px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .back-nav a { color: #2563eb; text-decoration: none; font-weight: 600; font-size: 14px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 28px; }
+        h1 { font-size: 24px; color: #0f172a; margin-bottom: 6px; }
+        .flex-demo { display: flex; gap: 16px; justify-content: space-between; flex-wrap: wrap; margin: 20px 0; }
+        .box { background: #3b82f6; color: white; padding: 24px; border-radius: 8px; flex: 1; min-width: 150px; text-align: center; font-weight: 600; }
+        .code-snippet { background: #0f172a; color: #f8fafc; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 13px; margin: 16px 0; }
+    </style>
+</head>
+<body>
+    <div class="back-nav"><a href="../index.html">&larr; Back to FED Coursework Portal</a></div>
+    <div class="container">
+        <h1>FED Lab 03: CSS3 Flexbox Deep-Dive</h1>
+        <p style="color:#64748b; font-size:14px;">1D Layout Models • Alignments, Distributions, and Auto-Sizing</p>
+        
+        <div class="code-snippet">
+            display: flex;<br>
+            justify-content: space-between;<br>
+            gap: 16px;<br>
+            flex-wrap: wrap;
+        </div>
+
+        <div class="flex-demo">
+            <div class="box">Item 1 (Flex 1)</div>
+            <div class="box" style="background:#8b0000;">Item 2 (Flex 1)</div>
+            <div class="box" style="background:#16a34a;">Item 3 (Flex 1)</div>
+        </div>
+    </div>
+</body>
+</html>

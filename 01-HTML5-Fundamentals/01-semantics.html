@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Semantics & Structure - FED Lab</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; padding: 24px 16px; line-height: 1.6; }
+        .container { max-width: 860px; margin: 0 auto; background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        header { background: #1e293b; color: white; padding: 24px; text-align: center; }
+        nav { background: #0f172a; padding: 12px 20px; display: flex; gap: 16px; justify-content: center; }
+        nav a { color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 500; }
+        nav a:hover { color: white; }
+        main { padding: 28px; }
+        section { margin-bottom: 24px; }
+        h2 { font-size: 20px; color: #0f172a; margin-bottom: 8px; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; }
+        article { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-top: 12px; }
+        aside { background: #fef2f2; border-left: 4px solid #ef4444; padding: 14px; border-radius: 4px; margin: 16px 0; font-size: 14px; }
+        footer { background: #f1f5f9; border-top: 1px solid #e2e8f0; padding: 16px; text-align: center; font-size: 13px; color: #64748b; }
+        .back-nav { margin-bottom: 16px; max-width: 860px; margin-left: auto; margin-right: auto; }
+        .back-nav a { color: #2563eb; text-decoration: none; font-weight: 600; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="back-nav"><a href="../index.html">&larr; Back to FED Coursework Portal</a></div>
+    <div class="container">
+        <header>
+            <h1>FED Lab 01: Semantic Document Architecture</h1>
+            <p>KL University • Department of CSE • Ch. Prudhvi Raj (2500080283)</p>
+        </header>
+        <nav>
+            <a href="#intro">Introduction</a>
+            <a href="#tags">Core Tags</a>
+            <a href="#accessibility">Accessibility</a>
+        </nav>
+        <main>
+            <section id="intro">
+                <h2>Why HTML5 Semantics Matter</h2>
+                <p>Semantic HTML introduces meaning to the web page rather than just presentation. Browsers, screen readers, and search engines rely on semantic tags to interpret content hierarchy and document flow.</p>
+                <aside>
+                    <strong>Key Concept:</strong> Replacing generic <code>&lt;div&gt;</code> tags with <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;footer&gt;</code> improves accessibility and SEO rankings.
+                </aside>
+            </section>
+            <section id="tags">
+                <h2>Semantic Elements Breakdown</h2>
+                <article>
+                    <h3>1. Document Outline Tags</h3>
+                    <p><code>&lt;header&gt;</code> represents introductory content. <code>&lt;nav&gt;</code> holds navigational links. <code>&lt;main&gt;</code> encloses unique, primary document content.</p>
+                </article>
+                <article>
+                    <h3>2. Sectioning Content</h3>
+                    <p><code>&lt;section&gt;</code> marks a standalone section of functionality. <code>&lt;article&gt;</code> contains independent, self-contained distributable content.</p>
+                </article>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2026 KL University FED Coursework • Student ID: 2500080283</p>
+        </footer>
+    </div>
+</body>
+</html>

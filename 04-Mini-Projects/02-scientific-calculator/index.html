@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Calculator - FED Mini Project</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px 16px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        .back-nav { width: 100%; max-width: 360px; margin-bottom: 16px; }
+        .back-nav a { color: #38bdf8; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .calc-body { width: 100%; max-width: 360px; background: #1e293b; border: 1px solid #334155; border-radius: 20px; padding: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+        .display { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 18px; text-align: right; margin-bottom: 16px; min-height: 80px; display: flex; flex-direction: column; justify-content: flex-end; }
+        .history { font-size: 13px; color: #94a3b8; min-height: 18px; margin-bottom: 4px; }
+        .current { font-size: 32px; font-weight: 700; color: #f8fafc; overflow-x: auto; }
+        .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        button { padding: 16px; border-radius: 12px; border: none; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+        .btn-num { background: #334155; color: white; }
+        .btn-num:hover { background: #475569; }
+        .btn-op { background: #0284c7; color: white; }
+        .btn-op:hover { background: #0369a1; }
+        .btn-eq { background: #10b981; color: white; grid-column: span 2; }
+        .btn-eq:hover { background: #059669; }
+        .btn-clear { background: #ef4444; color: white; }
+        .btn-clear:hover { background: #dc2626; }
+    </style>
+</head>
+<body>
+    <div class="back-nav"><a href="../../index.html">&larr; Back to FED Coursework Portal</a></div>
+    <div class="calc-body">
+        <div class="display">
+            <div class="history" id="historyDisplay"></div>
+            <div class="current" id="currentDisplay">0</div>
+        </div>
+        <div class="keys">
+            <button class="btn-clear" onclick="clearCalc()">C</button>
+            <button class="btn-op" onclick="deleteChar()">&larr;</button>
+            <button class="btn-op" onclick="appendOp('%')">%</button>
+            <button class="btn-op" onclick="appendOp('/')">&divide;</button>
+
+            <button class="btn-num" onclick="appendNum('7')">7</button>
+            <button class="btn-num" onclick="appendNum('8')">8</button>
+            <button class="btn-num" onclick="appendNum('9')">9</button>
+            <button class="btn-op" onclick="appendOp('*')">&times;</button>
+
+            <button class="btn-num" onclick="appendNum('4')">4</button>
+            <button class="btn-num" onclick="appendNum('5')">5</button>
+            <button class="btn-num" onclick="appendNum('6')">6</button>
+            <button class="btn-op" onclick="appendOp('-')">&minus;</button>
+
+            <button class="btn-num" onclick="appendNum('1')">1</button>
+            <button class="btn-num" onclick="appendNum('2')">2</button>
+            <button class="btn-num" onclick="appendNum('3')">3</button>
+            <button class="btn-op" onclick="appendOp('+')">+</button>
+
+            <button class="btn-num" onclick="appendNum('0')">0</button>
+            <button class="btn-num" onclick="appendNum('.')">.</button>
+            <button class="btn-eq" onclick="calculate()">=</button>
+        </div>
+    </div>
+    <script>
+        let current = '0';
+        let history = '';
+        const currentEl = document.getElementById('currentDisplay');
+        const historyEl = document.getElementById('historyDisplay');
+
+        function update() {
+            currentEl.textContent = current;
+            historyEl.textContent = history;
+        }
+
+        function appendNum(n) {
+            if (current === '0' && n !== '.') current = n;
+            else if (n === '.' && current.includes('.')) return;
+            else current += n;
+            update();
+        }
+
+        function appendOp(op) {
+            history = current + ' ' + op;
+            current = '0';
+            update();
+        }
+
+        function clearCalc() { current = '0'; history = ''; update(); }
+        function deleteChar() { current = current.length > 1 ? current.slice(0, -1) : '0'; update(); }
+
+        function calculate() {
+            if (!history) return;
+            try {
+                const expr = (history + ' ' + current).replace(/×/g, '*').replace(/÷/g, '/');
+                const result = Function('"use strict";return (' + expr + ')')();
+                history = expr + ' =';
+                current = String(Number(result.toFixed(6)));
+                update();
+                history = '';
+            } catch (e) {
+                current = 'Error';
+                update();
+            }
+        }
+    </script>
+</body>
+</html>

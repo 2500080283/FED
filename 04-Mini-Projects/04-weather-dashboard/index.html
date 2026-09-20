@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard - FED Mini Project</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px 16px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        .back-nav { width: 100%; max-width: 440px; margin-bottom: 16px; }
+        .back-nav a { color: #38bdf8; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .weather-card { width: 100%; max-width: 440px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 1px solid #334155; border-radius: 20px; padding: 24px; box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+        .search-bar { display: flex; gap: 8px; margin-bottom: 24px; }
+        input { flex: 1; padding: 10px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: white; }
+        button { background: #38bdf8; color: #0f172a; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        .city-info { text-align: center; margin-bottom: 20px; }
+        .city-name { font-size: 24px; font-weight: 700; }
+        .condition { font-size: 14px; color: #94a3b8; }
+        .temp-display { font-size: 54px; font-weight: 800; color: #38bdf8; text-align: center; margin-bottom: 20px; }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .detail-item { background: #0f172a; border: 1px solid #334155; padding: 12px; border-radius: 10px; text-align: center; }
+        .detail-label { font-size: 11px; color: #94a3b8; text-transform: uppercase; }
+        .detail-val { font-size: 16px; font-weight: 700; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="back-nav"><a href="../../index.html">&larr; Back to FED Coursework Portal</a></div>
+    <div class="weather-card">
+        <div class="search-bar">
+            <input type="text" id="cityInput" placeholder="Vijayawada, Guntur, Hyderabad..." value="Vijayawada">
+            <button onclick="fetchWeather()">Search</button>
+        </div>
+        <div class="city-info">
+            <div class="city-name" id="cityName">Vijayawada, AP</div>
+            <div class="condition" id="condition">Partly Cloudy • KL Campus</div>
+        </div>
+        <div class="temp-display" id="temp">31°C</div>
+        <div class="details-grid">
+            <div class="detail-item">
+                <div class="detail-label">Humidity</div>
+                <div class="detail-val" id="humidity">68%</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">Wind Speed</div>
+                <div class="detail-val" id="wind">14 km/h</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">UV Index</div>
+                <div class="detail-val">6 (Moderate)</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">Air Quality</div>
+                <div class="detail-val">Good (42)</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const cityData = {
+            'vijayawada': { name: 'Vijayawada, AP', temp: '31°C', cond: 'Sunny • KL Campus', hum: '68%', wind: '14 km/h' },
+            'guntur': { name: 'Guntur, AP', temp: '32°C', cond: 'Clear Sky', hum: '64%', wind: '12 km/h' },
+            'hyderabad': { name: 'Hyderabad, TS', temp: '28°C', cond: 'Pleasant Breeze', hum: '58%', wind: '16 km/h' },
+            'visakhapatnam': { name: 'Visakhapatnam, AP', temp: '29°C', cond: 'Coastal Breeze', hum: '78%', wind: '20 km/h' }
+        };
+
+        function fetchWeather() {
+            const input = document.getElementById('cityInput').value.trim().toLowerCase();
+            const data = cityData[input] || {
+                name: input.charAt(0).toUpperCase() + input.slice(1),
+                temp: (24 + Math.floor(Math.random() * 10)) + '°C',
+                cond: 'Scattered Clouds',
+                hum: (50 + Math.floor(Math.random() * 30)) + '%',
+                wind: (10 + Math.floor(Math.random() * 15)) + ' km/h'
+            };
+
+            document.getElementById('cityName').textContent = data.name;
+            document.getElementById('condition').textContent = data.cond;
+            document.getElementById('temp').textContent = data.temp;
+            document.getElementById('humidity').textContent = data.hum;
+            document.getElementById('wind').textContent = data.wind;
+        }
+    </script>
+</body>
+</html>

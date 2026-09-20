@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables and Form Controls - FED Lab</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; padding: 24px 16px; line-height: 1.6; }
+        .back-nav { margin-bottom: 16px; max-width: 860px; margin-left: auto; margin-right: auto; }
+        .back-nav a { color: #2563eb; text-decoration: none; font-weight: 600; font-size: 14px; }
+        .container { max-width: 860px; margin: 0 auto; background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        h1 { font-size: 24px; color: #0f172a; margin-bottom: 6px; }
+        p.subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 28px; }
+        th, td { padding: 12px 14px; border: 1px solid #cbd5e1; text-align: left; font-size: 14px; }
+        th { background: #f1f5f9; color: #334155; }
+        form { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; }
+        .form-group { margin-bottom: 14px; }
+        label { display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 4px; }
+        input, select { width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; }
+        button { background: #2563eb; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="back-nav"><a href="../index.html">&larr; Back to FED Coursework Portal</a></div>
+    <div class="container">
+        <h1>FED Lab 02: Advanced Tables & Form Validation</h1>
+        <p class="subtitle">Front-End Development • Academic Practice</p>
+
+        <h2 style="font-size: 18px; margin-bottom: 12px;">Course Performance Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Title</th>
+                    <th>Credits</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>24CS2101</td>
+                    <td>Front End Development</td>
+                    <td>4</td>
+                    <td><strong>O (Outstanding)</strong></td>
+                </tr>
+                <tr>
+                    <td>24CS2102</td>
+                    <td>Database Management Systems</td>
+                    <td>4</td>
+                    <td><strong>A+ (Excellent)</strong></td>
+                </tr>
+                <tr>
+                    <td>24CS2103</td>
+                    <td>Operating Systems</td>
+                    <td>3</td>
+                    <td><strong>A (Very Good)</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 style="font-size: 18px; margin-bottom: 12px;">Course Feedback Form</h2>
+        <form onsubmit="event.preventDefault(); alert('Feedback recorded!');">
+            <div class="form-group">
+                <label for="studentId">Student ID:</label>
+                <input type="text" id="studentId" value="2500080283" readonly style="background:#e2e8f0;">
+            </div>
+            <div class="form-group">
+                <label for="rating">Lab Experience Rating:</label>
+                <select id="rating">
+                    <option value="5">5 - Exceptional</option>
+                    <option value="4">4 - Good</option>
+                    <option value="3">3 - Satisfactory</option>
+                </select>
+            </div>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+</body>
+</html>
